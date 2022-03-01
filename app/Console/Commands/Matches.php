@@ -54,7 +54,7 @@ class Matches extends Command
         }
         foreach ($content['matches'] as $match) {
             // 66 = Manchester United FC
-            if ($match['homeTeam']['id'] == 66) {
+            if ($match['homeTeam']['id'] == env('TEAM_ID', 66)) {
                 $time = Carbon::parse($match['utcDate']);
                 $message = 'Manchester United Match vs ' . ($match['awayTeam']['name'] ?? '') . ' on the ' . $time->format('d/m/Y') . ' at ' . $time->format('H:i');
                 $telegram = new \Telegram\Bot\Api(env('TELEGRAM_BOT_TOKEN'));
