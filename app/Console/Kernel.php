@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('check:matches', ['--date=' . today()->format('Y-m-d')])->dailyAt('6:30');
+        $schedule->command('check:matches', ['--date=' . today()->addDays(1)->format('Y-m-d')])->dailyAt('17:30');
     }
 
     /**
@@ -25,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
