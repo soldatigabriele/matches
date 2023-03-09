@@ -50,9 +50,11 @@ class Matches extends Command
         $content = json_decode($response->getBody()->getContents(), true);
 
         if ($content['count'] == 0) {
+            info('no matches found'); 
             return 0;
         }
         foreach ($content['matches'] as $match) {
+            info('found matches'); 
             // 66 = Manchester United FC
             if ($match['homeTeam']['id'] == env('TEAM_ID', 66)) {
                 $time = Carbon::parse($match['utcDate']);
